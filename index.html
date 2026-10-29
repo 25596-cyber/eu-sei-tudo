@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebFicheiros & Cloud Manager</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #16a34a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: var(--gray);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        /* Área de Ficheiros */
+        .file-zone {
+            border: 2px dashed #cbd5e1;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 6px;
+            background: #f1f5f9;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-zone:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* Gerador de Notícias */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        input[type="text"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        /* Preview da Notícia */
+        .preview-box {
+            display: none;
+            margin-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .news-tag {
+            background: #dc2626;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin: 1rem 1rem 0 1rem;
+        }
+
+        .news-card h2 {
+            padding: 0.5rem 1rem;
+            font-size: 1.75rem;
+            color: #1a1a1a;
+        }
+
+        .news-meta {
+            padding: 0 1rem 1rem 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .news-content {
+            padding: 1rem;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">📁 WebFicheiros</div>
+        <nav>
+            <a href="#" id="nav-files" class="active" onclick="switchTab('files')">Os Meus Ficheiros</a>
+            <a href="#" id="nav-generator" onclick="switchTab('generator')">Criador de Conteúdo</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <!-- SECÇÃO 1: WEB FICHEIROS -->
+        <div id="section-files" class="section">
+            <h1>Gestão de Ficheiros na Nuvem</h1>
+            <p style="color: var(--gray); margin-bottom: 1.5rem;">Faça o upload, organize e armazene os seus documentos em total segurança.</p>
+            
+            <div class="file-zone">
+                <p style="font-size: 1.25rem; font-weight: 600;">Arraste os seus ficheiros para aqui</p>
+                <p style="color: var(--gray); font-size: 0.875rem; margin-top: 0.25rem;">Suporta PDF, ZIP, PNG ou JPG até 50MB</p>
+                <button class="btn">Procurar Ficheiro</button>
+            </div>
+        </div>
+
+        <!-- SECÇÃO 2: GERADOR DE NOTÍCIAS -->
+        <div id="section-generator" class="section hidden">
+            <h1>Criador de Notícias Fictícias</h1>
+            <p style="color: var(--gray); margin-bottom: 1.5rem;">Crie cabeçalhos e artigos personalizados para partilhar com os seus amigos.</p>
+            
+            <div class="form-group">
+                <label for="news-title">Título da Notícia (Headline):</label>
+                <input type="text" id="news-title" placeholder="Ex: Cientistas descobrem que chocolate não engorda">
+            </div>
+
+            <div class="form-group">
+                <label for="news-body">Corpo da Notícia:</label>
+                <textarea id="news-body" rows="6" placeholder="Escreva o texto do artigo aqui..."></textarea>
+            </div>
+
+            <button class="btn" style="background-color: var(--success);" onclick="generateNews()">Gerar Notícia</button>
+
+            <!-- Área de Resultado/Preview -->
+            <div id="preview-area" class="preview-box">
+                <h3 style="margin-bottom: 1rem; color: var(--gray);">Visualização do Artigo:</h3>
+                <div class="news-card">
+                    <span class="news-tag">Última Hora</span>
+                    <h2 id="view-title">Título da Notícia</h2>
+                    <div class="news-meta">Publicado por Jornal Oficial • Há instantes</div>
+                    <div id="view-body" class="news-content">Conteúdo da notícia...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            const filesSec = document.getElementById('section-files');
+            const genSec = document.getElementById('section-generator');
+            const navFiles = document.getElementById('nav-files');
+            const navGen = document.getElementById('nav-generator');
+
+            if (tab === 'files') {
+                filesSec.classList.remove('hidden');
+                genSec.classList.add('hidden');
+                navFiles.classList.add('active');
+                navGen.classList.remove('active');
+            } else {
+                filesSec.classList.add('hidden');
+                genSec.classList.remove('hidden');
+                navFiles.classList.remove('active');
+                navGen.classList.add('active');
+            }
+        }
+
+        function generateNews() {
+            const titleInput = document.getElementById('news-title').value;
+            const bodyInput = document.getElementById('news-body').value;
+
+            if(!titleInput || !bodyInput) {
+                alert('Por favor, preencha o título e o corpo da notícia.');
+                return;
+            }
+
+            document.getElementById('view-title').innerText = titleInput;
+            document.getElementById('view-body').innerText = bodyInput;
+            document.getElementById('preview-area').style.display = 'block';
+            
+            // Faz scroll suave até à notícia gerada
+            document.getElementById('preview-area').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
